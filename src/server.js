@@ -4,22 +4,12 @@ import * as render from './render.js'
 import * as md6 from 'https://deno.land/x/md6/mod.ts'
 
 let root = Deno.cwd()
-let webRoot = join(root, 'web')
-/*
-async function staticFile(ctx) {
-  let relPath = decodeURIComponent(ctx.params[0])
-  console.log('relPath=', relPath)
-  await send(ctx, relPath, {
-    root: 'static',
-    index: "index.html",
-  })
-}
-*/
+
 async function webFileInfo(wpath) {
   let r = {}
   try {
     r.relPath = decodeURIComponent(wpath)
-    r.absPath = join(webRoot, r.relPath)
+    r.absPath = join(root, r.relPath)
     console.log('absPath=', r.absPath)
     r.entry = await Deno.stat(r.absPath)
     r.status = 200
@@ -41,7 +31,7 @@ function isDirectServeFile(dpath) {
   return false
 }
 
-export async function dirList(fpath) {
+async function dirList(fpath) {
   let list = []
   for await (const entry of Deno.readDir(fpath)) {
     list.push(entry)
@@ -78,7 +68,7 @@ async function webFile(ctx) {
         await render.markdown(ctx, r.relPath, md)
       } else if (isDirectServeFile(r.absPath)) { // 圖檔/CSS/HTML => 直接回應
         await send(ctx, r.relPath, {
-          root: webRoot,
+          root: root,
           index: "index.html",
         })
       } else { // 視為文字檔顯示原始碼
@@ -93,8 +83,9 @@ async function webFile(ctx) {
   }
 }
 
-async function main() {
-  let port = parseInt(Deno.args[0])
+export async function serve(dir, port) {
+  root = dir
+  // let port = parseInt(Deno.args[0])
   console.log('root=%s port=%d', root, port)
   let footerMd = await Deno.readTextFile(join(root, '_footer.md'))
   let footer = md6.toHtml(footerMd)
@@ -124,4 +115,13 @@ async function main() {
   }  
 }
 
-await main()
+/*
+async function staticFile(ctx) {
+  let relPath = decodeURIComponent(ctx.params[0])
+  console.log('relPath=', relPath)
+  await send(ctx, relPath, {
+    root: 'static',
+    index: "index.html",
+  })
+}
+*/
