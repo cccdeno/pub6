@@ -1,3 +1,5 @@
+[中文版](./tw/README.md)
+
 # pub6 -- A Server Publish Markdown Content on Web
 
 ## Install
@@ -40,3 +42,6 @@ import { serve } from 'https://deno.land/x/pub6/mod.ts'
 serve(Deno.args[0], parseInt(Deno.args[1]))
 ```
 
+## Chart
+
+[chart.html](./chart.html)
