@@ -28,7 +28,7 @@ export function layout(dpath, body) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
-    <link rel="stylesheet" href="https://cccdeno.github.io/pub6/static/fe6/fe6.css"/>
+    <link rel="stylesheet" href="https://cccdeno.github.io/ui6/mod.css"/>
   </head>
   <body>
     <main>
@@ -51,7 +51,7 @@ export function layout(dpath, body) {
       };
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script type="module" src="https://cccdeno.github.io/pub6/static/pub6.js"></script>
+    <script type="module" src="https://cccdeno.github.io/pub6/static/main.js"></script>
   </body>
   </html>
   `

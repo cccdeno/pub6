@@ -45,3 +45,7 @@ serve(Deno.args[0], parseInt(Deno.args[1]))
 ## Chart
 
 [chart.html](./chart.html)
+
+## Math
+
+* [math.md](./math.md)
